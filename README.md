@@ -17,9 +17,10 @@ Built as a Jekyll site and served directly by GitHub Pages.
   Post content in Markdown.
   ```
 - `_layouts/` &mdash; page templates
+- `_data/publications.yml` and `_data/news.yml` &mdash; structured homepage content
 - `assets/css/style.css` &mdash; styling
 - `assets/img/ben-ballyk.jpg` &mdash; profile photo
-- `assets/cv/ben-ballyk-cv.pdf` &mdash; CV
+- `assets/cv.pdf` &mdash; optional CV target; the nav link remains commented out until this file is added
 
 ## Local preview (optional)
 

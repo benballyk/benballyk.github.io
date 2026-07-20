@@ -21,15 +21,15 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
       </p>
       <div class="contact-row">
         <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">Email</a>
-        <span class="sep">/</span>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-        <span class="sep">/</span>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://github.com/benballyk" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <span class="sep">/</span>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://www.linkedin.com/in/ben-ballyk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <span class="sep">/</span>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://x.com/BenBallyk" target="_blank" rel="noopener noreferrer">X</a>
-        <span class="sep">/</span>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://ori.ox.ac.uk/people/ben-ballyk" target="_blank" rel="noopener noreferrer">ORI Profile</a>
       </div>
     </div>
@@ -60,21 +60,21 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
       <li class="pub">
         <div class="pub-row{% if publication.thumb %} pub-row--with-thumb{% endif %}">
           {% if publication.thumb %}
-          <img class="pub-thumb" src="{{ publication.thumb | relative_url }}" alt="" width="96" height="96" loading="lazy">
+          <img class="pub-thumb" src="{{ publication.thumb | relative_url | escape }}" alt="" width="96" height="96" loading="lazy">
           {% endif %}
           <div class="pub-content">
             {% assign title_url = publication.links.pmlr | default: publication.links.arxiv | default: publication.links.pdf %}
-            <p class="pub-title">{% if title_url %}<a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}</p>
+            <p class="pub-title">{% if title_url %}<a href="{{ title_url | escape }}" target="_blank" rel="noopener noreferrer">{{ publication.title | escape }}</a>{% else %}{{ publication.title | escape }}{% endif %}</p>
             <p class="pub-meta">
-              <span class="pub-venue">{{ publication.venue }} {{ publication.year }}{% if publication.venue_detail %} {{ publication.venue_detail }}{% endif %}{% if publication.citation %} &middot; {{ publication.citation }}{% endif %}</span>{% if publication.status %} <em class="pub-status">{{ publication.status }}</em>{% endif %}
+              <span class="pub-venue">{{ publication.venue | escape }} {{ publication.year | escape }}{% if publication.venue_detail %} {{ publication.venue_detail | escape }}{% endif %}{% if publication.citation %} &middot; {{ publication.citation | escape }}{% endif %}</span>{% if publication.status %} <em class="pub-status">{{ publication.status | escape }}</em>{% endif %}
             </p>
-            <p class="pub-authors">{% for author in publication.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+            <p class="pub-authors">{% for author in publication.authors %}{% if author.me %}<strong>{{ author.name | escape }}</strong>{% else %}{{ author.name | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
             {% if publication.links.pmlr or publication.links.arxiv or publication.links.pdf %}
-            <p class="pub-links" aria-label="Publication links">
-              {% if publication.links.pmlr %}<a class="link-chip" href="{{ publication.links.pmlr }}" target="_blank" rel="noopener noreferrer">PMLR</a>{% endif %}
-              {% if publication.links.arxiv %}<a class="link-chip" href="{{ publication.links.arxiv }}" target="_blank" rel="noopener noreferrer">arXiv</a>{% endif %}
-              {% if publication.links.pdf %}<a class="link-chip" href="{{ publication.links.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
-            </p>
+            <div class="pub-links" role="group" aria-label="Links for {{ publication.title | escape }}">
+              {% if publication.links.pmlr %}<a class="link-chip" href="{{ publication.links.pmlr | escape }}" target="_blank" rel="noopener noreferrer">PMLR</a>{% endif %}
+              {% if publication.links.arxiv %}<a class="link-chip" href="{{ publication.links.arxiv | escape }}" target="_blank" rel="noopener noreferrer">arXiv</a>{% endif %}
+              {% if publication.links.pdf %}<a class="link-chip" href="{{ publication.links.pdf | escape }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+            </div>
             {% endif %}
           </div>
         </div>
@@ -90,7 +90,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <ul class="news-list">
       {% for item in site.data.news limit: 5 %}
       <li>
-        <span class="news-date">{{ item.date }}</span>
+        <span class="news-date">{{ item.date | escape }}</span>
         <span class="news-text">{{ item.text }}</span>
       </li>
       {% endfor %}
@@ -102,7 +102,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
       <ul class="news-list news-list--earlier">
         {% for item in site.data.news offset: 5 %}
         <li>
-          <span class="news-date">{{ item.date }}</span>
+          <span class="news-date">{{ item.date | escape }}</span>
           <span class="news-text">{{ item.text }}</span>
         </li>
         {% endfor %}

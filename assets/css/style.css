@@ -61,6 +61,7 @@ a {
   color: var(--accent);
   text-decoration-line: underline;
   text-decoration-color: var(--accent-underline);
+  text-decoration-skip-ink: auto;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: text-decoration-color 0.15s ease;
@@ -139,6 +140,7 @@ summary:focus-visible {
 .nav-links a {
   color: var(--text);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -150,10 +152,14 @@ summary:focus-visible {
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 240px;
+  grid-template-columns: minmax(0, 1fr) 240px;
   gap: 2.5rem;
   align-items: start;
   padding: 3rem 0 2.5rem;
+}
+
+.hero-text {
+  min-width: 0;
 }
 
 .hero-photo img {
@@ -407,6 +413,10 @@ section h2 {
   border-bottom: 1px solid var(--border);
 }
 
+.post-list li:last-child {
+  border-bottom: none;
+}
+
 .post-date {
   display: inline-block;
   min-width: 5rem;
@@ -448,6 +458,10 @@ section h2 {
 /* Responsive */
 
 @media (max-width: 700px) {
+  html {
+    scroll-padding-top: 96px;
+  }
+
   .nav-inner {
     gap: 0.55rem 0.75rem;
     padding-top: 0.75rem;
@@ -463,9 +477,11 @@ section h2 {
   }
 
   .nav-links {
+    flex: 0 0 100%;
     flex-wrap: nowrap;
     gap: 0.35rem 0.65rem;
     font-size: 0.8rem;
+    width: 100%;
   }
 
   .hero {
@@ -476,8 +492,13 @@ section h2 {
   }
 
   .hero-photo {
+    justify-self: start;
     order: -1;
     width: 140px;
+  }
+
+  .contact-row .sep {
+    display: none;
   }
 
   .hero h1 {
