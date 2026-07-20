@@ -5,10 +5,20 @@ description: >-
 url: "https://benballyk.github.io"
 author: Benjamin Ballyk
 email: benjamin.ballyk@eng.ox.ac.uk
-lang: en_UK
+lang: en-GB
+locale: en_GB
 
-image: /assets/img/ben-ballyk.jpg
 logo: /assets/img/ben-ballyk.jpg
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /assets/img/ben-ballyk.jpg
+        width: 780
+        height: 712
+        alt: Benjamin Ballyk laughing on a beach in a wetsuit, balancing a surfboard on his head
 
 twitter:
   username: BenBallyk
@@ -18,6 +28,7 @@ social:
   name: Benjamin Ballyk
   links:
     - https://scholar.google.com/citations?hl=en&user=c_QO_lsAAAAJ
+    - https://github.com/benballyk
     - https://www.linkedin.com/in/ben-ballyk
     - https://x.com/BenBallyk
     - https://ori.ox.ac.uk/people/ben-ballyk
