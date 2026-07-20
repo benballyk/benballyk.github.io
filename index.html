@@ -56,25 +56,32 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <p class="section-label" aria-hidden="true">Publications</p>
     <h2>Publications</h2>
     <ul class="pub-list">
+      {% for publication in site.data.publications %}
       <li class="pub">
-        <p class="pub-title">Open-Vocabulary Mutual Information for Speech BCIs</p>
-        <p class="pub-meta">NeurIPS &middot; 2026 <em>(in review)</em></p>
-        <p class="pub-authors">D. Jayalath, B. Ballyk, et al., O. Parker Jones</p>
+        <div class="pub-row{% if publication.thumb %} pub-row--with-thumb{% endif %}">
+          {% if publication.thumb %}
+          <img class="pub-thumb" src="{{ publication.thumb | relative_url }}" alt="" width="96" height="96" loading="lazy">
+          {% endif %}
+          <div class="pub-content">
+            {% assign title_url = publication.links.pmlr | default: publication.links.arxiv | default: publication.links.pdf %}
+            <p class="pub-title">{% if title_url %}<a href="{{ title_url }}" target="_blank" rel="noopener noreferrer">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}</p>
+            <p class="pub-meta">
+              <span class="pub-venue">{{ publication.venue }} {{ publication.year }}{% if publication.venue_detail %} {{ publication.venue_detail }}{% endif %}{% if publication.citation %} &middot; {{ publication.citation }}{% endif %}</span>{% if publication.status %} <em class="pub-status">{{ publication.status }}</em>{% endif %}
+            </p>
+            <p class="pub-authors">{% for author in publication.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+            {% if publication.links.pmlr or publication.links.arxiv or publication.links.pdf %}
+            <p class="pub-links" aria-label="Publication links">
+              {% if publication.links.pmlr %}<a class="link-chip" href="{{ publication.links.pmlr }}" target="_blank" rel="noopener noreferrer">PMLR</a>{% endif %}
+              {% if publication.links.arxiv %}<a class="link-chip" href="{{ publication.links.arxiv }}" target="_blank" rel="noopener noreferrer">arXiv</a>{% endif %}
+              {% if publication.links.pdf %}<a class="link-chip" href="{{ publication.links.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+            </p>
+            {% endif %}
+          </div>
+        </div>
       </li>
-      <li class="pub">
-        <p class="pub-title"><a href="https://arxiv.org/abs/2607.05165" target="_blank" rel="noopener noreferrer">Physiological Noise Augmentation Improves Non-Invasive Brain-to-Speech</a></p>
-        <p class="pub-meta">ICML workshop (SD4H) &middot; 2026 &middot; also submitted to NeurIPS 2026 (in review)</p>
-        <p class="pub-authors">B. Ballyk, T. Kwon, M. &Ouml;zdogan, O. Parker Jones</p>
-        <p class="pub-links">[<a href="https://arxiv.org/abs/2607.05165" target="_blank" rel="noopener noreferrer">arxiv</a>]</p>
-      </li>
-      <li class="pub">
-        <p class="pub-title"><a href="https://proceedings.mlr.press/v297/ballyk26a.html" target="_blank" rel="noopener noreferrer">Privacy-Preserving Generative Modeling and Clinical Validation of Longitudinal Health Records for Chronic Disease</a></p>
-        <p class="pub-meta">ML4H &middot; 2025 &middot; PMLR 297:985&ndash;1006 &middot; also NeurIPS workshop (TS4H)</p>
-        <p class="pub-authors">B. Ballyk, A. Gupta, S. Konda, K. Subramanian, C. Landon, A. A. Naseer, G. Maierhofer, S. Swaminathan, V. Venkateshwaran</p>
-        <p class="pub-links">[<a href="https://proceedings.mlr.press/v297/ballyk26a.html" target="_blank" rel="noopener noreferrer">pmlr</a>] / [<a href="https://arxiv.org/abs/2512.00434" target="_blank" rel="noopener noreferrer">arxiv</a>]</p>
-      </li>
+      {% endfor %}
     </ul>
-    <p class="pub-scholar-link"><a href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">See on Google Scholar</a></p>
+    <p class="pub-scholar-link"><a class="link-chip" href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">See on Google Scholar</a></p>
   </section>
 
   <section id="updates">

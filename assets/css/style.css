@@ -232,7 +232,7 @@ section h2 {
 }
 
 .pub {
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -246,6 +246,7 @@ section h2 {
   font-size: 1.05rem;
   color: var(--accent-dark);
   margin: 0 0 0.3rem;
+  text-wrap: pretty;
 }
 
 .pub-title a {
@@ -258,7 +259,14 @@ section h2 {
   margin-bottom: 0.3rem;
 }
 
-.pub-meta em {
+.pub-status {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.pub-status::before {
+  content: " · ";
+  font-family: var(--font-sans);
   font-style: normal;
 }
 
@@ -267,20 +275,53 @@ section h2 {
   margin: 0 0 0.4rem;
 }
 
+.pub-authors strong {
+  font-weight: 600;
+}
+
 .pub-links {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
   margin: 0;
 }
 
-.pub-links a {
+.link-chip {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 0.15rem 0.5rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.link-chip:hover,
+.link-chip:focus-visible {
+  border-color: var(--accent);
   color: var(--accent);
 }
 
 .pub-scholar-link {
   margin-top: 1.25rem;
-  font-size: 0.95rem;
+  text-align: right;
+}
+
+.pub-row--with-thumb {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.pub-thumb {
+  border-radius: 4px;
+  display: block;
+  height: 96px;
+  object-fit: cover;
+  width: 96px;
 }
 
 /* News */
@@ -407,5 +448,13 @@ section h2 {
 
   .hero h1 {
     font-size: 2rem;
+  }
+
+  .pub-row--with-thumb {
+    display: block;
+  }
+
+  .pub-thumb {
+    display: none;
   }
 }
