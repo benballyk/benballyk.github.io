@@ -161,8 +161,10 @@ button:focus-visible {
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 14px;
-  box-shadow: 0 6px 24px rgba(0, 33, 71, 0.15);
+  box-shadow: 0 2px 12px rgba(0, 33, 71, 0.1);
   display: block;
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
 }
 
 .hero h1 {
@@ -170,14 +172,15 @@ button:focus-visible {
   margin-bottom: 0.35rem;
 }
 
-.intro {
-  max-width: 58ch;
+.intro,
+.research-copy {
+  max-width: 65ch;
 }
 
 .contact-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5rem 0.75rem;
   margin-top: 1.25rem;
@@ -185,7 +188,7 @@ button:focus-visible {
 }
 
 .contact-row a {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .contact-row .sep {
@@ -210,6 +213,14 @@ section h2 {
   line-height: 1.2;
   margin: 0 0 0.45rem;
   text-transform: uppercase;
+}
+
+.research-keywords {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 1.25rem 0 0;
 }
 
 /* Publications */
@@ -384,12 +395,14 @@ section h2 {
 
   .hero {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
     text-align: left;
     padding-top: 2.25rem;
   }
 
   .hero-photo {
-    max-width: 200px;
+    order: -1;
+    width: 140px;
   }
 
   .hero h1 {
