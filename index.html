@@ -88,27 +88,27 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <p class="section-label" aria-hidden="true">Updates</p>
     <h2>Updates</h2>
     <ul class="news-list">
+      {% for item in site.data.news limit: 5 %}
       <li>
-        <span class="news-date">Jul 2026</span>
-        <span class="news-text">Attended ICML 2026 in Seoul to present at the SD4H workshop.</span>
+        <span class="news-date">{{ item.date }}</span>
+        <span class="news-text">{{ item.text }}</span>
       </li>
-      <li>
-        <span class="news-date">Dec 2025</span>
-        <span class="news-text">Attended NeurIPS 2025 and ML4H 2025 in San Diego to present MSc thesis work. <a href="https://arxiv.org/abs/2512.00434" target="_blank" rel="noopener noreferrer">(arXiv)</a></span>
-      </li>
-      <li>
-        <span class="news-date">Oct 2025</span>
-        <span class="news-text">Started DPhil in Engineering Science at the University of Oxford, awarded an Engineering Science Research Grant.</span>
-      </li>
-      <li>
-        <span class="news-date">Summer 2025</span>
-        <span class="news-text">Interned as an ML Researcher on autonomous vehicles at Magna International &mdash; my work on VLMs for autonomous delivery was referenced in <a href="https://nvidianews.nvidia.com/news/nvidia-opens-portals-to-world-of-robotics-with-new-omniverse-libraries-cosmos-physical-ai-models-and-ai-computing-infrastructure" target="_blank" rel="noopener noreferrer">a NVIDIA press release</a>.</span>
-      </li>
-      <li>
-        <span class="news-date">2024</span>
-        <span class="news-text">Completed my MSc in Mathematical Modelling &amp; Scientific Computing at Oxford.</span>
-      </li>
+      {% endfor %}
     </ul>
+    {% assign news_count = site.data.news | size %}
+    {% if news_count > 5 %}
+    <details class="news-earlier">
+      <summary>Earlier</summary>
+      <ul class="news-list news-list--earlier">
+        {% for item in site.data.news offset: 5 %}
+        <li>
+          <span class="news-date">{{ item.date }}</span>
+          <span class="news-text">{{ item.text }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endif %}
   </section>
 
 </div>
