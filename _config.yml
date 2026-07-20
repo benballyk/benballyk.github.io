@@ -1,0 +1,35 @@
+title: Benjamin Ballyk
+description: >-
+  DPhil student in Engineering Science (Robotics) at the University of Oxford,
+  working on brain-computer interfaces, generative modelling, and biologically-grounded machine learning.
+url: "https://benballyk.github.io"
+author: Benjamin Ballyk
+email: benballyk@gmail.com
+lang: en_UK
+
+image: /assets/img/ben-ballyk.jpg
+logo: /assets/img/ben-ballyk.jpg
+
+twitter:
+  username: BenBallyk
+  card: summary
+
+social:
+  name: Benjamin Ballyk
+  links:
+    - https://scholar.google.com/citations?hl=en&user=c_QO_lsAAAAJ
+    - https://www.linkedin.com/in/ben-ballyk
+    - https://x.com/BenBallyk
+    - https://ori.ox.ac.uk/people/ben-ballyk
+
+markdown: kramdown
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

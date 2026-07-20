@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {% feed_meta %}
+  {% seo %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="nav-name">Benjamin Ballyk</a>
+      <div class="nav-links">
+        <a href="/#about">About</a>
+        <a href="/#research">Research</a>
+        <a href="/#publications">Publications</a>
+        <a href="/#news">News</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ "now" | date: "%Y" }} Benjamin Ballyk &middot; <a href="mailto:benballyk@gmail.com">benballyk@gmail.com</a></p>
+    </div>
+  </footer>
+</body>
+</html>
