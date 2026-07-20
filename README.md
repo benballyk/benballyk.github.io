@@ -2,7 +2,7 @@
 
 Personal website of Benjamin Ballyk &mdash; DPhil student in Engineering Science (Robotics) at the University of Oxford.
 
-Built as a Jekyll site and served directly by GitHub Pages (no build step to run yourself; GitHub builds it on push).
+Built as a Jekyll site and served directly by GitHub Pages.
 
 ## Structure
 
