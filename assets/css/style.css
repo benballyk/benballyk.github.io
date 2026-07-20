@@ -139,7 +139,7 @@ button:focus-visible {
 
 .hero {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 1fr 240px;
   gap: 2.5rem;
   align-items: center;
   padding: 3rem 0 2.5rem;
@@ -147,7 +147,7 @@ button:focus-visible {
 
 .hero-photo img {
   width: 100%;
-  aspect-ratio: 1000 / 712;
+  aspect-ratio: 780 / 712;
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 14px;
@@ -160,14 +160,8 @@ button:focus-visible {
   margin-bottom: 0.35rem;
 }
 
-.tagline {
-  font-size: 1.05rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-
 .intro {
-  max-width: 52ch;
+  max-width: 58ch;
 }
 
 .contact-row {
@@ -185,38 +179,11 @@ section {
   border-top: 1px solid var(--border);
 }
 
-/* Timeline / experience */
-
-.timeline {
-  list-style: none;
-  margin: 0.75rem 0 0;
-  padding: 0;
-}
-
-.timeline li {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.25rem 1rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.timeline li:last-child {
-  border-bottom: none;
-}
-
-.role {
-  font-weight: 500;
-}
-
-.org-date {
-  color: var(--muted);
-  font-size: 0.92rem;
-  text-align: right;
-}
-
 /* Research themes */
+
+.section-intro {
+  color: var(--muted);
+}
 
 .theme-list {
   list-style: none;
@@ -392,14 +359,5 @@ section {
 
   .hero h1 {
     font-size: 2rem;
-  }
-
-  .timeline li {
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .org-date {
-    text-align: left;
   }
 }
