@@ -386,7 +386,14 @@ section h2 {
 
 .blog-index h1 {
   font-size: 2rem;
-  margin-top: 2.5rem;
+  margin-top: 0;
+}
+
+.blog-empty {
+  color: var(--muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+  margin-top: 1.25rem;
 }
 
 .post-list {
