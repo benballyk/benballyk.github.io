@@ -103,19 +103,10 @@ button:focus-visible {
 .nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
   padding-top: 0.9rem;
   padding-bottom: 0.9rem;
-}
-
-.nav-name {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--accent-dark);
-  border-bottom: none;
 }
 
 .nav-links {
@@ -140,7 +131,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 1fr 240px;
   gap: 2.5rem;
-  align-items: center;
+  align-items: start;
   padding: 3rem 0 2.5rem;
 }
 
@@ -240,6 +231,8 @@ section {
 }
 
 .news-list li {
+  display: flex;
+  gap: 0.5rem 1rem;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--border);
 }
@@ -249,11 +242,15 @@ section {
 }
 
 .news-date {
-  display: inline-block;
-  min-width: 5.5rem;
+  flex: 0 0 5.5rem;
   color: var(--accent);
   font-weight: 500;
   font-size: 0.9rem;
+}
+
+.news-text {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* Blog */
