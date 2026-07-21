@@ -1,3 +1,7 @@
+- date: "Jun 2028"
+  text: >-
+    Started a Research Scientist internship at CoreWeave.
+
 - date: "Jul 2026"
   text: >-
     Attended ICML 2026 in Seoul to present at the SD4H workshop.
@@ -8,14 +12,12 @@
 
 - date: "Oct 2025"
   text: >-
-    Started DPhil in Engineering Science at the University of Oxford, awarded an Engineering Science Research Grant.
+    Started a PhD in Engineering Science at the University of Oxford, awarded an Engineering Science Research Grant.
 
-# TODO: Confirm the exact month before normalizing "Summer 2025".
 - date: "Summer 2025"
   text: >-
-    Interned as an ML Researcher on autonomous vehicles at Magna International &mdash; my work on VLMs for autonomous delivery was referenced in <a href="https://nvidianews.nvidia.com/news/nvidia-opens-portals-to-world-of-robotics-with-new-omniverse-libraries-cosmos-physical-ai-models-and-ai-computing-infrastructure" target="_blank" rel="noopener noreferrer">a NVIDIA press release</a>.
+    Interned as an ML Researcher on autonomous vehicles at Magna International, where my work on VLMs for autonomous delivery was referenced in <a href="https://nvidianews.nvidia.com/news/nvidia-opens-portals-to-world-of-robotics-with-new-omniverse-libraries-cosmos-physical-ai-models-and-ai-computing-infrastructure" target="_blank" rel="noopener noreferrer">an NVIDIA press release</a>.
 
-# TODO: Confirm the exact month before normalizing "2024".
 - date: "2024"
   text: >-
     Completed my MSc in Mathematical Modelling &amp; Scientific Computing at Oxford.

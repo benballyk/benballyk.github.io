@@ -29,8 +29,6 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
         <a href="https://www.linkedin.com/in/ben-ballyk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <span class="sep" aria-hidden="true">/</span>
         <a href="https://x.com/BenBallyk" target="_blank" rel="noopener noreferrer">X</a>
-        <span class="sep" aria-hidden="true">/</span>
-        <a href="https://ori.ox.ac.uk/people/ben-ballyk" target="_blank" rel="noopener noreferrer">ORI Profile</a>
       </div>
     </div>
     <div class="hero-photo">
@@ -39,13 +37,12 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
   </header>
 
   <section id="research">
-    <p class="section-label" aria-hidden="true">Research</p>
     <h2>Research</h2>
     <p class="research-copy">
       My work centers on decoding speech directly from noninvasive recordings of brain activity. In particular, I
-      develop biologically-grounded, physics-informed generative models &mdash; using flow-matching to synthesize
-      realistic, cross-patient neural data &mdash; that help speech-decoding brain-computer interfaces generalize
-      across people, even when real neural data is scarce. In the past, I've also dabbled in the world of
+      develop biologically-grounded, physics-informed generative models that use flow-matching to synthesize
+      realistic, cross-patient neural data, helping speech-decoding brain-computer interfaces generalize
+      across people even when real neural data is scarce. In the past, I've also dabbled in the world of
       differentially private data generation, and efficient vision-language models (VLMs) for
       self-driving cars.
     </p>
@@ -53,7 +50,6 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
   </section>
 
   <section id="publications">
-    <p class="section-label" aria-hidden="true">Publications</p>
     <h2>Publications</h2>
     <ul class="pub-list">
       {% for publication in site.data.publications %}
@@ -85,7 +81,6 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
   </section>
 
   <section id="updates">
-    <p class="section-label" aria-hidden="true">Updates</p>
     <h2>Updates</h2>
     <ul class="news-list">
       {% for item in site.data.news limit: 5 %}
