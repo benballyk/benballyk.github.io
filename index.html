@@ -7,16 +7,16 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
 
   <header class="hero" id="about">
     <div class="hero-banner">
-      <h1>Benjamin Ballyk</h1>
+      <h1>Ben Ballyk</h1>
       <p class="hero-subtitle">University of Oxford</p>
       <div class="contact-row">
-        <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">Email</a>
-        <span class="sep">/</span>
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="https://github.com/benballyk" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span class="sep" aria-hidden="true">/</span>
         <a href="https://www.linkedin.com/in/ben-ballyk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <span class="sep">/</span>
-        <a href="https://x.com/BenBallyk" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-        <span class="sep">/</span>
-        <a href="https://ori.ox.ac.uk/people/ben-ballyk" target="_blank" rel="noopener noreferrer">ORI Profile</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="https://x.com/BenBallyk" target="_blank" rel="noopener noreferrer">X</a>
       </div>
     </div>
     <div class="hero-body">
@@ -34,71 +34,84 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
         </p>
       </div>
       <div class="hero-photo">
-        <img src="/assets/img/ben-ballyk.jpg" alt="Benjamin Ballyk laughing on a beach in a wetsuit, balancing a surfboard on his head">
+        <img src="/assets/img/ben-ballyk.jpg" alt="Ben incredibly cold in a 6mm wetsuit">
+        <p class="photo-caption">Photo taken in Tofino, BC</p>
       </div>
     </div>
   </header>
 
   <section id="research">
     <h2>Research</h2>
-    <p>
+    <p class="research-copy">
       My work centers on decoding speech directly from noninvasive recordings of brain activity. In particular, I
-      develop biologically-grounded, physics-informed generative models &mdash; using flow-matching to synthesize
-      realistic, cross-patient neural data &mdash; that help speech-decoding brain-computer interfaces generalize
-      across people, even when real neural data is scarce. In the past, I've also dabbled in the world of
-      differentially private data generation, and efficient vision-language models (VLMs) for
+      develop biologically-grounded generative models to synthesize
+      realistic neural data which helps speech-decoding brain-computer interfaces generalize
+      even when real neural data is expensive and scarce.
+    </p>
+    <p>
+      In the past, I've also dabbled in the world of
+      differentially private clinical data generation and efficient vision-language models (VLMs) for
       self-driving cars.
     </p>
+    <p>Slides from my oral presentations can be found <a href="/talks/">here</a>.</p>
+    <p class="research-keywords">speech BCIs &middot; synthetic time-series &middot; flows &middot; computational neuroscience &middot; information theory</p>
   </section>
 
   <section id="publications">
     <h2>Publications</h2>
     <ul class="pub-list">
+      {% for publication in site.data.publications %}
       <li class="pub">
-        <p class="pub-title">Open-Vocabulary Mutual Information for Speech BCIs</p>
-        <p class="pub-meta">NeurIPS &middot; 2026 <em>(in review)</em></p>
-        <p class="pub-authors">D. Jayalath, B. Ballyk, et al., O. Parker Jones</p>
+        <div class="pub-row{% if publication.thumb %} pub-row--with-thumb{% endif %}">
+          {% if publication.thumb %}
+          <img class="pub-thumb" src="{{ publication.thumb | relative_url | escape }}" alt="" width="96" height="96" loading="lazy">
+          {% endif %}
+          <div class="pub-content">
+            {% assign title_url = publication.links.pmlr | default: publication.links.arxiv | default: publication.links.pdf %}
+            <p class="pub-title">{% if title_url %}<a href="{{ title_url | escape }}" target="_blank" rel="noopener noreferrer">{{ publication.title | escape }}</a>{% else %}{{ publication.title | escape }}{% endif %}</p>
+            <p class="pub-meta">
+              <span class="pub-venue">{{ publication.venue | escape }} {{ publication.year | escape }}{% if publication.venue_detail %} {{ publication.venue_detail | escape }}{% endif %}{% if publication.citation %} &middot; {{ publication.citation | escape }}{% endif %}</span>{% if publication.status %} <em class="pub-status">{{ publication.status | escape }}</em>{% endif %}
+            </p>
+            <p class="pub-authors">{% for author in publication.authors %}{% if author.me %}<strong>{{ author.name | escape }}</strong>{% else %}{{ author.name | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+            {% if publication.links.pmlr or publication.links.arxiv or publication.links.pdf %}
+            <div class="pub-links" role="group" aria-label="Links for {{ publication.title | escape }}">
+              {% if publication.links.pmlr %}<a class="link-chip" href="{{ publication.links.pmlr | escape }}" target="_blank" rel="noopener noreferrer">PMLR</a>{% endif %}
+              {% if publication.links.arxiv %}<a class="link-chip" href="{{ publication.links.arxiv | escape }}" target="_blank" rel="noopener noreferrer">arXiv</a>{% endif %}
+              {% if publication.links.pdf %}<a class="link-chip" href="{{ publication.links.pdf | escape }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
       </li>
-      <li class="pub">
-        <p class="pub-title"><a href="https://arxiv.org/abs/2607.05165" target="_blank" rel="noopener noreferrer">Physiological Noise Augmentation Improves Non-Invasive Brain-to-Speech</a></p>
-        <p class="pub-meta">ICML workshop (SD4H) &middot; 2026 &middot; also submitted to NeurIPS 2026 (in review)</p>
-        <p class="pub-authors">B. Ballyk, T. Kwon, M. &Ouml;zdogan, O. Parker Jones</p>
-        <p class="pub-links">[<a href="https://arxiv.org/abs/2607.05165" target="_blank" rel="noopener noreferrer">arxiv</a>]</p>
-      </li>
-      <li class="pub">
-        <p class="pub-title"><a href="https://proceedings.mlr.press/v297/ballyk26a.html" target="_blank" rel="noopener noreferrer">Privacy-Preserving Generative Modeling and Clinical Validation of Longitudinal Health Records for Chronic Disease</a></p>
-        <p class="pub-meta">ML4H &middot; 2025 &middot; PMLR 297:985&ndash;1006 &middot; also NeurIPS workshop (TS4H)</p>
-        <p class="pub-authors">B. Ballyk, A. Gupta, S. Konda, K. Subramanian, C. Landon, A. A. Naseer, G. Maierhofer, S. Swaminathan, V. Venkateshwaran</p>
-        <p class="pub-links">[<a href="https://proceedings.mlr.press/v297/ballyk26a.html" target="_blank" rel="noopener noreferrer">pmlr</a>] / [<a href="https://arxiv.org/abs/2512.00434" target="_blank" rel="noopener noreferrer">arxiv</a>]</p>
-      </li>
+      {% endfor %}
     </ul>
-    <p class="pub-scholar-link"><a href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">See on Google Scholar</a></p>
+    <p class="pub-scholar-link"><a class="link-chip" href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">See on Google Scholar</a></p>
   </section>
 
   <section id="updates">
     <h2>Updates</h2>
     <ul class="news-list">
+      {% for item in site.data.news limit: 5 %}
       <li>
-        <span class="news-date">Jul 2026</span>
-        <span class="news-text">Attended ICML 2026 in Seoul to present at the SD4H workshop.</span>
+        <span class="news-date">{{ item.date | escape }}</span>
+        <span class="news-text">{{ item.text }}</span>
       </li>
-      <li>
-        <span class="news-date">Dec 2025</span>
-        <span class="news-text">Attended NeurIPS 2025 and ML4H 2025 in San Diego to present MSc thesis work. <a href="https://arxiv.org/abs/2512.00434" target="_blank" rel="noopener noreferrer">(arXiv)</a></span>
-      </li>
-      <li>
-        <span class="news-date">Oct 2025</span>
-        <span class="news-text">Started DPhil in Engineering Science at the University of Oxford, awarded an Engineering Science Research Grant.</span>
-      </li>
-      <li>
-        <span class="news-date">Summer 2025</span>
-        <span class="news-text">Interned as an ML Researcher on autonomous vehicles at Magna International &mdash; my work on VLMs for autonomous delivery was referenced in <a href="https://nvidianews.nvidia.com/news/nvidia-opens-portals-to-world-of-robotics-with-new-omniverse-libraries-cosmos-physical-ai-models-and-ai-computing-infrastructure" target="_blank" rel="noopener noreferrer">a NVIDIA press release</a>.</span>
-      </li>
-      <li>
-        <span class="news-date">2024</span>
-        <span class="news-text">Completed my MSc in Mathematical Modelling &amp; Scientific Computing at Oxford.</span>
-      </li>
+      {% endfor %}
     </ul>
+    {% assign news_count = site.data.news | size %}
+    {% if news_count > 5 %}
+    <details class="news-earlier">
+      <summary>Earlier</summary>
+      <ul class="news-list news-list--earlier">
+        {% for item in site.data.news offset: 5 %}
+        <li>
+          <span class="news-date">{{ item.date | escape }}</span>
+          <span class="news-text">{{ item.text }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endif %}
   </section>
 
 </div>

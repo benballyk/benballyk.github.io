@@ -1,13 +1,13 @@
 # benballyk.github.io
 
-Personal website of Benjamin Ballyk &mdash; DPhil student in Engineering Science (Robotics) at the University of Oxford.
+Personal website of Benjamin Ballyk, PhD student in Engineering Science (Robotics) at the University of Oxford.
 
-Built as a Jekyll site and served directly by GitHub Pages (no build step to run yourself; GitHub builds it on push).
+Built as a Jekyll site and served directly by GitHub Pages.
 
 ## Structure
 
-- `index.html` &mdash; homepage (About, Research, Publications, News)
-- `blog.html` + `_posts/` &mdash; blog; add a new post by dropping a file in `_posts/` named `YYYY-MM-DD-title.md` with front matter:
+- `index.html`: homepage (About, Research, Publications, Updates)
+- `blog.html` + `_posts/`: blog. Add a new post by dropping a file in `_posts/` named `YYYY-MM-DD-title.md` with front matter:
   ```
   ---
   layout: post
@@ -16,13 +16,14 @@ Built as a Jekyll site and served directly by GitHub Pages (no build step to run
   ---
   Post content in Markdown.
   ```
-- `_layouts/` &mdash; page templates
-- `assets/css/style.css` &mdash; styling
-- `assets/img/ben-ballyk.jpg` &mdash; profile photo
-- `assets/cv/ben-ballyk-cv.pdf` &mdash; CV
+- `_layouts/`: page templates
+- `_data/publications.yml` and `_data/news.yml`: structured homepage content
+- `assets/css/style.css`: styling
+- `assets/img/ben-ballyk.jpg`: profile photo
 
 ## Local preview (optional)
 
 ```
+bundle install
 bundle exec jekyll serve
 ```

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en-GB' | escape }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}">
+  <meta name="theme-color" content="#002147">
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +16,10 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <nav class="sidebar" aria-label="Primary">
     <div class="sidebar-links">
-      <a href="/#about">About</a>
       <a href="/#research">Research</a>
       <a href="/#publications">Publications</a>
       <a href="/#updates">Updates</a>
-      <a href="/blog/">Blog</a>
+      <a href="/talks/">Slides</a>
     </div>
   </nav>
 
@@ -32,7 +30,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; {{ "now" | date: "%Y" }} Benjamin Ballyk &middot; <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">benjamin.ballyk@eng.ox.ac.uk</a></p>
+        <p>&copy; {{ "now" | date: "%Y" }} Benjamin Ballyk &middot; Contact: <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">benjamin.ballyk@eng.ox.ac.uk</a></p>
       </div>
     </footer>
   </div>
