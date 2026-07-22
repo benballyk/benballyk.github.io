@@ -107,7 +107,6 @@ summary:focus-visible {
   display: flex;
   align-items: center;
   background: var(--bg);
-  border-right: 1px solid var(--border);
   z-index: 10;
 }
 
@@ -129,6 +128,11 @@ summary:focus-visible {
 .sidebar-links a:hover,
 .sidebar-links a:focus-visible {
   color: var(--accent);
+}
+
+.sidebar-links a.is-active {
+  color: var(--accent-dark);
+  font-weight: 600;
 }
 
 .page {
@@ -478,8 +482,6 @@ section h2 {
     top: 0;
     width: auto;
     height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: saturate(180%) blur(8px);
   }
