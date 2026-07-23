@@ -16,7 +16,7 @@
   if (!context) return;
 
   var transportQuery = window.matchMedia("(min-width: 701px)");
-  var mappingUrl = "/assets/data/image-transport-map.json";
+  var mappingUrl = "/assets/data/image-transport-map.json?v=20260724-1";
   var ready = false;
   var frameRequested = false;
   var layout = null;
@@ -367,7 +367,7 @@
   }
 
   Promise.all([
-    fetch(mappingUrl, { cache: "force-cache" }).then(function (response) {
+    fetch(mappingUrl, { cache: "no-cache" }).then(function (response) {
       if (!response.ok) {
         throw new Error("Could not load the image transport map.");
       }
@@ -393,7 +393,8 @@
         document.fonts.ready.then(measure);
       }
     })
-    .catch(function () {
+    .catch(function (error) {
+      console.error("Image transport initialization failed.", error);
       document.body.classList.remove("image-transport-active");
       sourceImage.style.opacity = "";
       targetImage.style.opacity = "";
