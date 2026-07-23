@@ -25,7 +25,8 @@
   var ready = false;
   var frameRequested = false;
   var layout = null;
-  var gridSize = 0;
+  var gridWidth = 0;
+  var gridHeight = 0;
   var particleCount = 0;
   var targetIndexForSource = null;
   var sourceColours = null;
@@ -76,19 +77,19 @@
     });
   }
 
-  function sampleColours(image, size) {
+  function sampleColours(image, width, height) {
     var sampler = document.createElement("canvas");
-    sampler.width = size;
-    sampler.height = size;
+    sampler.width = width;
+    sampler.height = height;
     var samplerContext = sampler.getContext("2d", {
       alpha: false,
       willReadFrequently: true
     });
-    samplerContext.drawImage(image, 0, 0, size, size);
+    samplerContext.drawImage(image, 0, 0, width, height);
 
-    var pixels = samplerContext.getImageData(0, 0, size, size).data;
-    var colours = new Uint8ClampedArray(size * size * 3);
-    for (var pixelIndex = 0; pixelIndex < size * size; pixelIndex += 1) {
+    var pixels = samplerContext.getImageData(0, 0, width, height).data;
+    var colours = new Uint8ClampedArray(width * height * 3);
+    for (var pixelIndex = 0; pixelIndex < width * height; pixelIndex += 1) {
       colours[pixelIndex * 3] = pixels[pixelIndex * 4];
       colours[pixelIndex * 3 + 1] = pixels[pixelIndex * 4 + 1];
       colours[pixelIndex * 3 + 2] = pixels[pixelIndex * 4 + 2];
@@ -99,14 +100,16 @@
   function validateTransportMap(data) {
     if (
       !data ||
-      !Number.isInteger(data.gridSize) ||
-      data.gridSize < 2 ||
+      !Number.isInteger(data.gridWidth) ||
+      !Number.isInteger(data.gridHeight) ||
+      data.gridWidth < 2 ||
+      data.gridHeight < 2 ||
       !Array.isArray(data.targetIndexForSource)
     ) {
       throw new Error("The image transport map is malformed.");
     }
 
-    var expectedCount = data.gridSize * data.gridSize;
+    var expectedCount = data.gridWidth * data.gridHeight;
     if (data.targetIndexForSource.length !== expectedCount) {
       throw new Error("The image transport map has the wrong particle count.");
     }
@@ -126,19 +129,20 @@
   }
 
   function prepareParticles(data) {
-    gridSize = data.gridSize;
-    particleCount = gridSize * gridSize;
+    gridWidth = data.gridWidth;
+    gridHeight = data.gridHeight;
+    particleCount = gridWidth * gridHeight;
     targetIndexForSource = new Uint16Array(data.targetIndexForSource);
-    sourceColours = sampleColours(sourceImage, gridSize);
-    targetColours = sampleColours(targetImage, gridSize);
+    sourceColours = sampleColours(sourceImage, gridWidth, gridHeight);
+    targetColours = sampleColours(targetImage, gridWidth, gridHeight);
     delay = new Float32Array(particleCount);
     horizontalDrift = new Float32Array(particleCount);
     dropScale = new Float32Array(particleCount);
     phase = new Float32Array(particleCount);
 
     for (var index = 0; index < particleCount; index += 1) {
-      var sourceRow = Math.floor(index / gridSize);
-      var rowAmount = sourceRow / Math.max(1, gridSize - 1);
+      var sourceRow = Math.floor(index / gridWidth);
+      var rowAmount = sourceRow / Math.max(1, gridHeight - 1);
       delay[index] =
         ((1 - rowAmount) * 0.58 + randomFor(index, 1) * 0.42) * 0.085;
       horizontalDrift[index] = (randomFor(index, 2) - 0.5) * 150;
@@ -171,10 +175,15 @@
 
     var sourceTop = sourceRect.top + pageY;
     var targetTop = targetRect.top + pageY;
-    var startScroll = Math.max(0, sourceTop - window.innerHeight * 0.34);
+    var transportDelay = clamp(window.innerHeight * 0.08, 64, 96);
+    var baseStartScroll = Math.max(
+      0,
+      sourceTop - window.innerHeight * 0.34
+    );
+    var startScroll = baseStartScroll + transportDelay;
     var endScroll = Math.max(
       startScroll + 1,
-      targetTop - window.innerHeight * 0.38
+      targetTop - window.innerHeight * 0.38 + transportDelay
     );
 
     layout = {
@@ -218,13 +227,10 @@
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
   }
 
-  function renderFallback(progress) {
+  function renderStatic() {
     document.body.classList.remove("image-transport-active");
     clearCanvas();
-    setImageOpacity(
-      1 - smoothstep(0.08, 0.62, progress),
-      smoothstep(0.42, 0.95, progress)
-    );
+    setImageOpacity(1, 1);
   }
 
   function renderParticles(progress) {
@@ -242,10 +248,10 @@
 
     var pageX = window.scrollX || window.pageXOffset;
     var pageY = window.scrollY || window.pageYOffset;
-    var sourceCellWidth = layout.sourceWidth / gridSize;
-    var sourceCellHeight = layout.sourceHeight / gridSize;
-    var targetCellWidth = layout.targetWidth / gridSize;
-    var targetCellHeight = layout.targetHeight / gridSize;
+    var sourceCellWidth = layout.sourceWidth / gridWidth;
+    var sourceCellHeight = layout.sourceHeight / gridHeight;
+    var targetCellWidth = layout.targetWidth / gridWidth;
+    var targetCellHeight = layout.targetHeight / gridHeight;
     var colourAmount = smoothstep(0.5, 0.88, progress);
     var maximumDrop = Math.min(layout.viewportHeight * 0.28, 230);
 
@@ -254,10 +260,10 @@
 
     for (var index = 0; index < particleCount; index += 1) {
       var targetIndex = targetIndexForSource[index];
-      var sourceColumn = index % gridSize;
-      var sourceRow = Math.floor(index / gridSize);
-      var targetColumn = targetIndex % gridSize;
-      var targetRow = Math.floor(targetIndex / gridSize);
+      var sourceColumn = index % gridWidth;
+      var sourceRow = Math.floor(index / gridWidth);
+      var targetColumn = targetIndex % gridWidth;
+      var targetRow = Math.floor(targetIndex / gridWidth);
 
       var sourceX =
         layout.sourceLeft + (sourceColumn + 0.5) * sourceCellWidth;
@@ -320,17 +326,20 @@
         )
       );
 
-      var sourceRadius =
-        Math.min(sourceCellWidth, sourceCellHeight) * 0.58;
-      var targetRadius =
-        Math.min(targetCellWidth, targetCellHeight) * 0.58;
-      var radius =
-        mix(sourceRadius, targetRadius, movement) * (1 - arc * 0.3);
+      var sourceSize =
+        Math.min(sourceCellWidth, sourceCellHeight) * 1.06;
+      var targetSize =
+        Math.min(targetCellWidth, targetCellHeight) * 1.06;
+      var particleSize =
+        mix(sourceSize, targetSize, movement) * (1 - arc * 0.32);
 
       context.fillStyle = "rgb(" + red + "," + green + "," + blue + ")";
-      context.beginPath();
-      context.arc(x, y, radius, 0, Math.PI * 2);
-      context.fill();
+      context.fillRect(
+        x - particleSize / 2,
+        y - particleSize / 2,
+        particleSize,
+        particleSize
+      );
     }
 
     context.restore();
@@ -344,7 +353,7 @@
     if (motionQuery.matches && !saveData) {
       renderParticles(progress);
     } else {
-      renderFallback(progress);
+      renderStatic();
     }
   }
 

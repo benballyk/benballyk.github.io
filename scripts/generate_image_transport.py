@@ -19,15 +19,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_IMAGE = ROOT / "assets" / "img" / "ben-ballyk.jpg"
 TARGET_IMAGE = ROOT / "assets" / "img" / "megin-scan.jpg"
 OUTPUT = ROOT / "assets" / "data" / "image-transport-map.json"
-GRID_SIZE = 48
+GRID_WIDTH = 72
+GRID_HEIGHT = 66
 
 
 def sample_image(path: Path) -> np.ndarray:
-    """Return a GRID_SIZE square of sRGB samples in row-major order."""
+    """Return an aspect-ratio-aware grid of sRGB samples in row-major order."""
 
     with Image.open(path) as image:
         sampled = image.convert("RGB").resize(
-            (GRID_SIZE, GRID_SIZE), Image.Resampling.LANCZOS
+            (GRID_WIDTH, GRID_HEIGHT), Image.Resampling.LANCZOS
         )
     return np.asarray(sampled, dtype=np.float32).reshape(-1, 3) / 255.0
 
@@ -72,8 +73,9 @@ def transport_features(rgb: np.ndarray) -> np.ndarray:
     lab[:, 0] /= 100.0
     lab[:, 1:] /= 128.0
 
-    axis = (np.arange(GRID_SIZE, dtype=np.float32) + 0.5) / GRID_SIZE
-    x, y = np.meshgrid(axis, axis)
+    x_axis = (np.arange(GRID_WIDTH, dtype=np.float32) + 0.5) / GRID_WIDTH
+    y_axis = (np.arange(GRID_HEIGHT, dtype=np.float32) + 0.5) / GRID_HEIGHT
+    x, y = np.meshgrid(x_axis, y_axis)
     spatial = np.column_stack((x.ravel(), y.ravel())) * 0.18
     return np.column_stack((lab, spatial)).astype(np.float32)
 
@@ -92,11 +94,12 @@ def main() -> None:
         squared_distance_matrix(source, target)
     )
 
-    assignment = np.empty(GRID_SIZE * GRID_SIZE, dtype=np.uint16)
+    assignment = np.empty(GRID_WIDTH * GRID_HEIGHT, dtype=np.uint16)
     assignment[source_indices] = target_indices
 
     payload = {
-        "gridSize": GRID_SIZE,
+        "gridWidth": GRID_WIDTH,
+        "gridHeight": GRID_HEIGHT,
         "particleCount": int(assignment.size),
         "method": "Balanced discrete optimal transport in CIE Lab and image space",
         "targetIndexForSource": assignment.tolist(),
