@@ -4,6 +4,7 @@ title: Home
 description: "Personal website of Benjamin Ballyk, PhD student in Engineering Science (Robotics) at the University of Oxford."
 ---
 <div class="container">
+  <canvas class="image-transport-canvas" id="image-transport-canvas" aria-hidden="true"></canvas>
 
   <header class="hero" id="about">
     <div class="hero-banner">
@@ -33,28 +34,36 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
           Mechanical Engineering (Western University) and Business Administration (Ivey Business School) in Canada.
         </p>
       </div>
-      <div class="hero-photo">
-        <img src="/assets/img/ben-ballyk.jpg" alt="Ben incredibly cold in a 6mm wetsuit">
-        <p class="photo-caption">Photo taken in Tofino, BC</p>
-      </div>
+      <figure class="hero-photo transport-photo transport-photo--source" id="transport-source">
+        <img id="transport-source-image" src="/assets/img/ben-ballyk.jpg" alt="Ben incredibly cold in a 6mm wetsuit" width="780" height="712">
+        <figcaption class="photo-caption" id="transport-source-caption">Photo taken in Tofino, BC</figcaption>
+      </figure>
     </div>
   </header>
 
   <section id="research">
     <h2>Research</h2>
-    <p class="research-copy">
-      My work centers on decoding speech directly from noninvasive recordings of brain activity. In particular, I
-      develop biologically-grounded generative models to synthesize
-      realistic neural data which helps speech BCIs generalize
-      even when real neural data is expensive and scarce.
-    </p>
-    <p>
-      In the past, I've also dabbled in the world of
-      differentially private clinical data generation and efficient vision-language models (VLMs) for
-      self-driving cars.
-    </p>
-    <p>Slides from my oral presentations can be found <a href="/talks/">here</a>.</p>
-    <p class="research-keywords">speech BCIs &middot; synthetic time-series &middot; flows &middot; computational neuroscience &middot; information theory</p>
+    <div class="research-body">
+      <div class="research-text">
+        <p class="research-copy">
+          My work centers on decoding speech directly from noninvasive recordings of brain activity. In particular, I
+          develop biologically-grounded generative models to synthesize
+          realistic neural data which helps speech BCIs generalize
+          even when real neural data is expensive and scarce.
+        </p>
+        <p>
+          In the past, I've also dabbled in the world of
+          differentially private clinical data generation and efficient vision-language models (VLMs) for
+          self-driving cars.
+        </p>
+        <p>Slides from my oral presentations can be found <a href="/talks/">here</a>.</p>
+        <p class="research-keywords">speech BCIs &middot; synthetic time-series &middot; flows &middot; computational neuroscience &middot; information theory</p>
+      </div>
+      <figure class="research-photo transport-photo transport-photo--target" id="transport-target">
+        <img id="transport-target-image" src="/assets/img/megin-scan.jpg" alt="Ben taking part in a MEG research session" width="720" height="900">
+        <figcaption class="photo-caption" id="transport-target-caption">MEG research session</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section id="publications">
@@ -115,3 +124,5 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
   </section>
 
 </div>
+
+<script src="/assets/js/image-transport.js" defer></script>

@@ -176,9 +176,12 @@ summary:focus-visible {
   min-width: 0;
 }
 
-.hero-photo img {
+.transport-photo {
+  margin: 0;
+}
+
+.transport-photo img {
   width: 100%;
-  aspect-ratio: 780 / 712;
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 14px;
@@ -186,6 +189,26 @@ summary:focus-visible {
   display: block;
   outline: 1px solid var(--border);
   outline-offset: -1px;
+  will-change: opacity;
+}
+
+.hero-photo img {
+  aspect-ratio: 780 / 712;
+}
+
+.image-transport-canvas {
+  contain: strict;
+  display: none;
+  height: 100vh;
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  z-index: 9;
+}
+
+body.image-transport-active .image-transport-canvas {
+  display: block;
 }
 
 .photo-caption {
@@ -196,6 +219,7 @@ summary:focus-visible {
   letter-spacing: 0.02em;
   line-height: 1.4;
   text-align: center;
+  will-change: opacity;
 }
 
 .intro,
@@ -229,6 +253,26 @@ section {
 
 section h2 {
   margin-bottom: 1.25rem;
+}
+
+.research-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.research-text {
+  min-width: 0;
+}
+
+.research-photo {
+  justify-self: end;
+  width: 240px;
+}
+
+.research-photo img {
+  aspect-ratio: 4 / 5;
 }
 
 .research-keywords {
@@ -472,7 +516,7 @@ section h2 {
 
 /* Responsive */
 
-@media (max-width: 700px) {
+@media (max-width: 1099px) {
   html {
     scroll-padding-top: 84px;
   }
@@ -498,7 +542,9 @@ section h2 {
     margin-left: 0;
     margin-right: 0;
   }
+}
 
+@media (max-width: 700px) {
   .hero {
     padding-top: 2.25rem;
   }
@@ -512,6 +558,17 @@ section h2 {
     justify-self: start;
     order: -1;
     width: 140px;
+  }
+
+  .research-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .research-photo {
+    justify-self: start;
+    order: -1;
+    width: min(100%, 220px);
   }
 
   .contact-row .sep {
