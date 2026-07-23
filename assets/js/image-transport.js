@@ -16,7 +16,7 @@
   if (!context) return;
 
   var motionQuery = window.matchMedia(
-    "(min-width: 1100px) and (prefers-reduced-motion: no-preference)"
+    "(min-width: 701px) and (prefers-reduced-motion: no-preference)"
   );
   var saveData = Boolean(
     navigator.connection && navigator.connection.saveData
