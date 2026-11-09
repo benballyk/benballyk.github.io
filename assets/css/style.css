@@ -365,11 +365,9 @@ section h2 {
   margin: 0 0 0.2rem;
 }
 
-/* Ordinary body-text link (blue, underlined) at the course name's size, in blue square brackets. */
+/* Same font as the course name, in link blue, inside blue square brackets. */
 .teaching-link {
   color: var(--accent);
-  font-family: var(--font-sans);
-  font-weight: 400;
   margin-left: 0.4rem;
 }
 

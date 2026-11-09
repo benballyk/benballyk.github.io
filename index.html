@@ -4,7 +4,9 @@ title: Ben Ballyk - Robotics PhD at Oxford
 description: "Personal website of Benjamin Ballyk, PhD student in Engineering Science (Robotics) at the University of Oxford."
 ---
 <div class="container">
+  {% if site.image_transport %}
   <canvas class="image-transport-canvas" id="image-transport-canvas" aria-hidden="true"></canvas>
+  {% endif %}
 
   <header class="hero" id="about">
     <div class="hero-banner">
@@ -154,4 +156,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
 
 </div>
 
+{% comment %}Photo-to-photo scroll animation; on/off via `image_transport` in _config.yml. When off, both photos are plain static images.{% endcomment %}
+{% if site.image_transport %}
 <script src="/assets/js/image-transport.js?v=20260724-1" defer></script>
+{% endif %}
