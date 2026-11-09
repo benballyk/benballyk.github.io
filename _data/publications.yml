@@ -72,7 +72,8 @@
     - name: N. Voets
     - name: M. Woolrich
     - name: O. Parker Jones
-  venue: "arXiv"
+  peer_reviewed: true
+  venue: "NeurIPS"
   year: "2026"
   links:
     arxiv: "https://arxiv.org/abs/2608.25204"
@@ -84,9 +85,9 @@
     - name: T. Kwon
     - name: M. Özdogan
     - name: O. Parker Jones
-  venue: "ICML"
+  venue: "arXiv"
   year: "2026"
-  venue_detail: "Workshop (SD4H)"
+  status: "also ICML 2026 workshop (SD4H)"
   links:
     arxiv: "https://arxiv.org/abs/2607.05165"
 
@@ -102,6 +103,7 @@
     - name: G. Maierhofer
     - name: S. Swaminathan
     - name: V. Venkateshwaran
+  peer_reviewed: true
   venue: "ML4H"
   year: "2025"
   citation: "PMLR 297:985–1006"

@@ -83,8 +83,18 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
 
   <section id="publications">
     <h2>Publications</h2>
+    {% comment %}Papers are split into two groups by `peer_reviewed: true` in _data/publications.yml; a group with no papers is skipped.{% endcomment %}
+    {% assign reviewed_count = site.data.publications | where: "peer_reviewed", true | size %}
+    {% assign preprint_count = site.data.publications.size | minus: reviewed_count %}
+    {% assign pub_groups = "reviewed,preprint" | split: "," %}
+    {% for group in pub_groups %}
+    {% if group == "reviewed" and reviewed_count == 0 %}{% continue %}{% endif %}
+    {% if group == "preprint" and preprint_count == 0 %}{% continue %}{% endif %}
+    <h3 class="pub-group-heading">{% if group == "reviewed" %}Peer-reviewed conference papers{% else %}Preprints and under review{% endif %}</h3>
     <ul class="pub-list">
       {% for publication in site.data.publications %}
+      {% if publication.peer_reviewed %}{% assign pub_group = "reviewed" %}{% else %}{% assign pub_group = "preprint" %}{% endif %}
+      {% if pub_group != group %}{% continue %}{% endif %}
       <li class="pub">
         <div class="pub-row{% if publication.thumb %} pub-row--with-thumb{% endif %}">
           {% if publication.thumb %}
@@ -111,6 +121,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
       </li>
       {% endfor %}
     </ul>
+    {% endfor %}
     <p class="pub-scholar-link"><a class="link-chip" href="https://scholar.google.com/citations?hl=en&amp;user=c_QO_lsAAAAJ" target="_blank" rel="noopener noreferrer">See on Google Scholar</a></p>
   </section>
 
