@@ -18,77 +18,14 @@
   {% endif %}
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <nav class="sidebar" aria-label="Primary">
-    <div class="sidebar-links">
-      <a href="/#research">Research</a>
-      <a href="/#publications">Publications</a>
-      <a href="/#updates">Updates</a>
-      <a href="/talks/">Slides</a>
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ "now" | date: "%Y" }} Benjamin Ballyk &middot; Contact: <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">benjamin.ballyk@eng.ox.ac.uk</a></p>
     </div>
-  </nav>
-
-  <div class="page">
-    <main id="main">
-      {{ content }}
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>&copy; {{ "now" | date: "%Y" }} Benjamin Ballyk &middot; Contact: <a href="mailto:benjamin.ballyk@eng.ox.ac.uk">benjamin.ballyk@eng.ox.ac.uk</a></p>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    (function () {
-      var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-links a'));
-      if (!links.length) return;
-
-      function activate(link) {
-        links.forEach(function (l) {
-          var isActive = l === link;
-          l.classList.toggle('is-active', isActive);
-          if (isActive) {
-            l.setAttribute('aria-current', 'true');
-          } else {
-            l.removeAttribute('aria-current');
-          }
-        });
-      }
-
-      function deactivate(link) {
-        link.classList.remove('is-active');
-        link.removeAttribute('aria-current');
-      }
-
-      var hashLinks = [];
-      links.forEach(function (link) {
-        var url = new URL(link.href);
-        if (!url.hash && url.pathname === location.pathname) {
-          activate(link);
-        } else if (url.hash && url.pathname === '/') {
-          var section = document.getElementById(url.hash.slice(1));
-          if (section) hashLinks.push({ link: link, section: section });
-        }
-      });
-
-      if (!hashLinks.length || !('IntersectionObserver' in window)) return;
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var match = hashLinks.find(function (h) { return h.section === entry.target; });
-          if (!match) return;
-          if (entry.isIntersecting) {
-            activate(match.link);
-          } else {
-            deactivate(match.link);
-          }
-        });
-      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-
-      hashLinks.forEach(function (h) { observer.observe(h.section); });
-    })();
-  </script>
+  </footer>
 </body>
 </html>
