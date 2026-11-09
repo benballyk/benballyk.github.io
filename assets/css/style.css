@@ -368,8 +368,9 @@ section h2 {
   margin: 0 0 0.2rem;
 }
 
-.teaching-course a {
-  color: inherit;
+.teaching-course .link-chip {
+  font-weight: 400;
+  margin-left: 0.35rem;
 }
 
 .teaching-meta {

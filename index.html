@@ -74,7 +74,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <ul class="teaching-list">
       {% for item in site.data.teaching %}
       <li class="teaching-item">
-        <p class="teaching-course">{% if item.url %}<a href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">{{ item.course | escape }}</a>{% else %}{{ item.course | escape }}{% endif %}</p>
+        <p class="teaching-course">{{ item.course | escape }}{% if item.url %} <a class="link-chip" href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">Course site</a>{% endif %}</p>
         <p class="teaching-meta">{{ item.department | escape }} &middot; {{ item.term | escape }}{% if item.role %} &middot; {{ item.role | escape }}{% endif %}</p>
       </li>
       {% endfor %}
@@ -83,17 +83,16 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
 
   <section id="publications">
     <h2>Publications</h2>
-    {% comment %}Papers are split into two groups by `peer_reviewed: true` in _data/publications.yml; a group with no papers is skipped.{% endcomment %}
-    {% assign reviewed_count = site.data.publications | where: "peer_reviewed", true | size %}
-    {% assign preprint_count = site.data.publications.size | minus: reviewed_count %}
-    {% assign pub_groups = "reviewed,preprint" | split: "," %}
+    {% comment %}Papers are grouped by `category` in _data/publications.yml ("conference" or "workshop"; anything else counts as a preprint). A group with no papers is skipped.{% endcomment %}
+    {% assign pub_groups = "conference,workshop,preprint" | split: "," %}
     {% for group in pub_groups %}
-    {% if group == "reviewed" and reviewed_count == 0 %}{% continue %}{% endif %}
-    {% if group == "preprint" and preprint_count == 0 %}{% continue %}{% endif %}
-    <h3 class="pub-group-heading">{% if group == "reviewed" %}Peer-reviewed conference papers{% else %}Preprints and under review{% endif %}</h3>
+    {% assign group_count = 0 %}
+    {% for p in site.data.publications %}{% assign p_group = p.category | default: "preprint" %}{% if p_group == group %}{% assign group_count = group_count | plus: 1 %}{% endif %}{% endfor %}
+    {% if group_count == 0 %}{% continue %}{% endif %}
+    <h3 class="pub-group-heading">{% case group %}{% when "conference" %}Peer-reviewed conference papers{% when "workshop" %}Peer-reviewed workshop papers{% else %}Preprints and under review{% endcase %}</h3>
     <ul class="pub-list">
       {% for publication in site.data.publications %}
-      {% if publication.peer_reviewed %}{% assign pub_group = "reviewed" %}{% else %}{% assign pub_group = "preprint" %}{% endif %}
+      {% assign pub_group = publication.category | default: "preprint" %}
       {% if pub_group != group %}{% continue %}{% endif %}
       <li class="pub">
         <div class="pub-row{% if publication.thumb %} pub-row--with-thumb{% endif %}">
