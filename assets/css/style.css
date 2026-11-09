@@ -221,14 +221,6 @@ section h2 {
   justify-self: end;
 }
 
-.research-keywords {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin: 1.25rem 0 0;
-}
-
 /* Publications */
 
 .pub-list {
@@ -237,22 +229,27 @@ section h2 {
   padding: 0;
 }
 
+/* Lines separate the groups (conference / workshop / preprints), not individual papers. */
 .pub-group-heading {
-  font-size: 1.15rem;
-  margin: 2.25rem 0 0.25rem;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 1.5rem 0 0.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
 }
 
 .pub-group-heading:first-of-type {
   margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .pub {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.pub:last-child {
-  border-bottom: none;
+  padding: 1rem 0;
 }
 
 .pub-title {
@@ -368,9 +365,11 @@ section h2 {
   margin: 0 0 0.2rem;
 }
 
-.teaching-course .link-chip {
+/* Ordinary body-text link (blue, underlined) at the course name's size. */
+.teaching-link {
+  font-family: var(--font-sans);
   font-weight: 400;
-  margin-left: 0.35rem;
+  margin-left: 0.4rem;
 }
 
 .teaching-meta {

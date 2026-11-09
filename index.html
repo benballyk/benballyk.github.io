@@ -46,7 +46,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
       <h2>Research</h2>
       <div class="research-text">
         <p class="research-copy">
-          My work centers on decoding speech directly from noninvasive recordings of brain activity. In particular, I
+          My work centers on decoding speech directly from non-invasive recordings of brain activity. In particular, I
           develop biologically-grounded generative models to synthesize
           realistic non-invasive neural responses which help speech BCIs generalize,
           even when real brain data is expensive and scarce.
@@ -57,7 +57,6 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
           self-driving cars.
         </p>
         <p>Slides from my oral presentations can be found <a href="/talks/">here</a>.</p>
-        <p class="research-keywords">speech BCIs &middot; synthetic time-series &middot; flows &middot; computational neuroscience &middot; information theory</p>
       </div>
       <figure class="research-photo transport-photo transport-photo--target" id="transport-target">
         <img id="transport-target-image" src="/assets/img/megin-scan.jpg" alt="Ben taking part in a MEG research session" width="780" height="712">
@@ -74,7 +73,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <ul class="teaching-list">
       {% for item in site.data.teaching %}
       <li class="teaching-item">
-        <p class="teaching-course">{{ item.course | escape }}{% if item.url %} <a class="link-chip" href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">Course site</a>{% endif %}</p>
+        <p class="teaching-course">{{ item.course | escape }}{% if item.url %} <a class="teaching-link" href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">Course site</a>{% endif %}</p>
         <p class="teaching-meta">{{ item.department | escape }} &middot; {{ item.term | escape }}{% if item.role %} &middot; {{ item.role | escape }}{% endif %}</p>
       </li>
       {% endfor %}
