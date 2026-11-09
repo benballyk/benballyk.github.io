@@ -21,6 +21,11 @@ defaults:
         width: 780
         height: 712
         alt: Benjamin Ballyk laughing on a beach in a wetsuit, balancing a surfboard on his head
+  # Google Search Console verification file: must stay published, but is not a real page.
+  - scope:
+      path: "google7ce3cfdc0fb68d69.html"
+    values:
+      sitemap: false
 
 twitter:
   username: BenBallyk
