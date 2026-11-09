@@ -73,7 +73,7 @@ description: "Personal website of Benjamin Ballyk, PhD student in Engineering Sc
     <ul class="teaching-list">
       {% for item in site.data.teaching %}
       <li class="teaching-item">
-        <p class="teaching-course">{{ item.course | escape }}{% if item.url %} <a class="teaching-link" href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">Course site</a>{% endif %}</p>
+        <p class="teaching-course">{{ item.course | escape }}{% if item.url %} <span class="teaching-link">[<a href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">Course site</a>]</span>{% endif %}</p>
         <p class="teaching-meta">{{ item.department | escape }} &middot; {{ item.term | escape }}{% if item.role %} &middot; {{ item.role | escape }}{% endif %}</p>
       </li>
       {% endfor %}
