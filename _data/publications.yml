@@ -1,13 +1,81 @@
-- title: "Open-Vocabulary Mutual Information for Speech BCIs"
+- title: "Beyond Accuracy: Information-Theoretic Decoder Evaluation Under Latent Intent"
+  authors:
+    - name: T. Kim
+    - name: B. Ballyk
+      me: true
+    - name: A. Lei
+    - name: I. Posner
+    - name: O. Parker Jones
+  venue: "arXiv"
+  year: "2026"
+  links:
+    arxiv: "https://arxiv.org/abs/2611.05658"
+
+- title: "A Common Measure of Communication for Speech Brain-Computer Interfaces"
   authors:
     - name: D. Jayalath
     - name: B. Ballyk
       me: true
     - name: O. Parker Jones
-  venue: "NeurIPS"
+  venue: "arXiv"
   year: "2026"
-  status: "(in review)"
-  links: {}
+  status: "under review at ICLR 2027"
+  links:
+    arxiv: "https://arxiv.org/abs/2609.02887"
+    project: "https://neural-processing-lab.github.io/OVMI/"
+    code: "https://github.com/neural-processing-lab/OVMI"
+
+- title: "The 2026 PNPL Competition: Word Classification and Efficient Cross-Subject Generalisation in LibriBrain100"
+  authors:
+    - name: F. Mantegna
+    - name: G. Elvers
+    - name: D. Jayalath
+    - name: G. Landau
+    - name: T. Kim
+    - name: M. Özdogan
+    - name: L. Kurth
+    - name: T. Kwon
+    - name: S. Cho
+    - name: B. Ballyk
+      me: true
+    - name: A. Fung
+    - name: A. Greer
+    - name: P. Somaiya
+    - name: C. Herff
+    - name: Y. Mantilla Ramos
+    - name: H. Abdelhedi
+    - name: K. Jerbi
+    - name: G. Farquhar
+    - name: B. Shillingford
+    - name: M. Woolrich
+    - name: O. Parker Jones
+  venue: "arXiv"
+  year: "2026"
+  links:
+    arxiv: "https://arxiv.org/abs/2609.03231"
+
+- title: "LibriBrain100: One Hundred Hours of Broad and Deep MEG Data for Neural Speech Decoding at Scale"
+  authors:
+    - name: F. Mantegna
+    - name: D. Jayalath
+    - name: G. Elvers
+    - name: T. Kim
+    - name: B. Ballyk
+      me: true
+    - name: A. Fung
+    - name: S. Cho
+    - name: T. Kwon
+    - name: L. Kurth
+    - name: M. Özdogan
+    - name: G. Landau
+    - name: P. Somaiya
+    - name: N. Voets
+    - name: M. Woolrich
+    - name: O. Parker Jones
+  venue: "arXiv"
+  year: "2026"
+  links:
+    arxiv: "https://arxiv.org/abs/2608.25204"
 
 - title: "Physiological Noise Augmentation Improves Non-Invasive Brain-to-Speech"
   authors:
@@ -19,7 +87,6 @@
   venue: "ICML"
   year: "2026"
   venue_detail: "Workshop (SD4H)"
-  status: "also submitted to NeurIPS 2026 (in review)"
   links:
     arxiv: "https://arxiv.org/abs/2607.05165"
 

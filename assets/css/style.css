@@ -334,6 +334,41 @@ section h2 {
   width: 96px;
 }
 
+/* Teaching */
+
+.teaching-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.teaching-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.teaching-item:last-child {
+  border-bottom: none;
+}
+
+.teaching-course {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--accent-dark);
+  margin: 0 0 0.2rem;
+}
+
+.teaching-course a {
+  color: inherit;
+}
+
+.teaching-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 /* News */
 
 .news-list {

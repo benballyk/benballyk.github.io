@@ -40,6 +40,9 @@ social:
     - https://x.com/BenBallyk
     - https://ori.ox.ac.uk/people/ben-ballyk
 
+# Homepage "Updates" section (data in _data/news.yml). Set to true to show it again.
+show_updates: false
+
 markdown: kramdown
 
 plugins:

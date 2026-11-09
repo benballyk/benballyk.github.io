@@ -1,0 +1,11 @@
+# Teaching roles, newest first. `url` is optional; omit it when the course page isn't public.
+- course: "B20 Machine Learning"
+  department: "Department of Engineering Science"
+  term: "Hilary 2027"
+  role: "Demonstrator and Teaching Assistant"
+
+- course: "Practical Numerical Analysis"
+  url: "https://courses.maths.ox.ac.uk/course/view.php?id=6773"
+  department: "Mathematical Institute"
+  term: "Michaelmas 2026"
+  role: "Demonstrator and Teaching Assistant"
